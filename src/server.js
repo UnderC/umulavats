@@ -45,7 +45,7 @@ class Server extends events.EventEmitter {
   }
 
   play (song) {
-    if (!this.player || !song) return
+    if (!this.player || !song) this.stop()
     if (this.repeat) this.songs.push(song)
     this.emit('playing', song)
     this.currentSong = song
@@ -58,8 +58,7 @@ class Server extends events.EventEmitter {
         return this.stop()
       } else if (dat.reason === 'REPLACED') return
 
-      if (this.songs.length > 0) this.play(this.songs.shift())
-      else this.stop()
+      this.play(this.songs.shift())
     })
 
     this.player.on('error', err => {
