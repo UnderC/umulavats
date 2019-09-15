@@ -48,11 +48,13 @@ class Server extends events.EventEmitter {
     if (!this.player || !song) return this.stop()
     if (this.repeat) this.songs.push(song)
     this.emit('playing', song)
+    this.playing = true
     this.currentSong = song
     this.player.play(this.currentSong.track)
     this.player.volume(this.volume)
 
     this.player.on('end', dat => {
+      this.playing = false
       if (this.skipSafe) {
         this.skipSafe = false
         return this.stop()
