@@ -18,6 +18,7 @@ class Server extends events.EventEmitter {
 
   async _ (channel) {
     if (!channel) return this.emit('notChannel')
+    if (this.player) return this.emit('alreadyJoined')
     this.player = this.client.player.join(
       {
         guild: this.gID,
@@ -67,6 +68,15 @@ class Server extends events.EventEmitter {
 
   pause () {
     if (this.player) this.player.pause(!this.player.paused)
+  }
+
+  fix (channel) {
+    if (!channel) return
+    if (this.currentSong) this.songs = [this.currentSong].concat(this.songs)
+    this.playing = false
+    this.stop()
+    this._(channel)
+    this.start()
   }
 
   skip () {
