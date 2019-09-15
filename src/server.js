@@ -1,5 +1,6 @@
 const events = require('events')
 const fetch = require('node-fetch')
+const Song = require('./song')
 
 class Server extends events.EventEmitter {
   constructor (gID, client) {
@@ -100,8 +101,9 @@ class Server extends events.EventEmitter {
   }
 
   add (song, isMyList) {
-    if (!isMyList) this.emit('addSong', song)
-    this.songs.push(song)
+    const _s = new Song(song)
+    if (!isMyList) this.emit('addSong', _s)
+    this.songs.push(_s)
   }
 
   getSongs (query) {
