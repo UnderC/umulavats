@@ -45,7 +45,7 @@ class Server extends events.EventEmitter {
   }
 
   play (song) {
-    if (!this.player || !song) this.stop()
+    if (!this.player || !song) return this.stop()
     if (this.repeat) this.songs.push(song)
     this.emit('playing', song)
     this.currentSong = song
