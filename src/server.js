@@ -1,4 +1,5 @@
 const events = require('events')
+const fetch = require('node-fetch')
 
 class Server extends events.EventEmitter {
   constructor (gID, client) {
