@@ -1,6 +1,6 @@
 {
   "name": "umulavats",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "umusicts for lavalink",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,6 @@
   "homepage": "https://github.com/UnderC/umulavats#readme",
   "dependencies": {
     "node-fetch": "^2.6.0",
-    "ytdl-core": "^0.29.7"
+    "ytdl-core": "^1.0.7"
   }
 }
